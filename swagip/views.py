@@ -15,18 +15,26 @@ def index():
     """ Function to return index page
     """
     clientInfo = {}
-    clientInfo = dict(request.headers.to_list())
 
     if request.access_route:
-        clientInfo['ip_addr'] = request.access_route[0]
-    else:
-        clientInfo['ip_addr'] = request.remote_addr
+        clientInfo['Source-IP'] = request.access_route[0]
+    elif request.remote_addr:
+        clientInfo['Source-IP'] = request.remote_addr
 
-    clientInfo['src_port'] = request.environ['REMOTE_PORT']
+    if 'REMOTE_PORT' in request.environ:
+        clientInfo['Source-Port'] = request.environ['REMOTE_PORT']
 
-    userAgent = request.user_agent.string
+    clientInfo.update(dict(request.headers.to_list()))
 
-    if "Wget" in userAgent or "fetch" in userAgent or "curl" in userAgent:
-        return jsonify(clientInfo), 200
-    else:
-        return render_template ('index.html', ip=clientInfo['ip_addr'])
+    sorted(clientInfo, key=clientInfo.get)
+
+    if request.user_agent.string:
+        
+        userAgent = request.user_agent.string
+        
+        if "Wget" in userAgent or "fetch" in userAgent or "curl" in userAgent:
+            return jsonify(clientInfo), 200
+        else:
+            return render_template ('index.html', clientInfo=clientInfo)
+
+    return render_template ('index.html')

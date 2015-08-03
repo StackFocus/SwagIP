@@ -21,6 +21,7 @@ def index():
     elif request.remote_addr:
         clientInfo['Source-IP'] = request.remote_addr
 
+
     if 'REMOTE_PORT' in request.environ:
         clientInfo['Source-Port'] = request.environ['REMOTE_PORT']
 

@@ -1,4 +1,4 @@
-"""
+﻿"""
 Author: Swagger.pro
 File: views.py
 Purpose: routes for the app
@@ -14,16 +14,28 @@ import json
 def index():
     """ Function to return index page
     """
-    userAgent = request.user_agent.string
+    clientInfo = {}
 
-    # Werkzeug stores the X-Forwarded-For header ip list in
-    # access_route.
     if request.access_route:
-        ip = request.access_route[0]
-    else:
-        ip = request.remote_addr
+        clientInfo['Source-IP'] = request.access_route[0]
+    elif request.remote_addr:
+        clientInfo['Source-IP'] = request.remote_addr
 
-    if "Wget" in userAgent or "fetch" in userAgent or "curl" in userAgent:
-        return ip, 200
-    else:
-        return render_template('index.html', ip=ip)
+
+    if 'REMOTE_PORT' in request.environ:
+        clientInfo['Source-Port'] = request.environ['REMOTE_PORT']
+
+    clientInfo.update(dict(request.headers.to_list()))
+
+    sorted(clientInfo, key=clientInfo.get)
+
+    if request.user_agent.string:
+        
+        userAgent = request.user_agent.string
+        
+        if "Wget" in userAgent or "fetch" in userAgent or "curl" in userAgent:
+            return jsonify(clientInfo), 200
+        else:
+            return render_template ('index.html', clientInfo=clientInfo)
+
+    return render_template ('index.html')

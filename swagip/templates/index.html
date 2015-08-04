@@ -1,3 +1,46 @@
-<title>SwagIP</title>
+<html>
+<head>
+    <title>SwagIP</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color:#FEFEFE">
+    <div class="container">
+        <div class="row">
+            <h2 class="text-center">SwagIP</h2>
+        </div>
+        <div class="row">
+            <h3 class="text-center" style="padding-bottom:1.5em">Your Public IP is {% if 'Source-IP' in clientInfo %} {{ clientInfo['Source-IP'] }} {% endif %}</h3>
+        </div>
 
-{{ ip }}
+        <div class="row">
+            {% if clientInfo %}
+            <ul class="nav nav-tabs nav-justified">
+                <li id="browser" role="presentation" class="active"><a href="#">Browser</a></li>
+                <li id="wget" role="presentation"><a href="#">Wget</a></li>
+                <li id="curl" role="presentation"><a href="#">Curl</a></li>
+                <li id="fetch" role="presentation"><a href="#">Fetch</a></li>
+            </ul>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Item:</th>
+                            <th>Result:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key in clientInfo %}
+                        <tr>
+                            <td>{{ key }}</td>
+                            <td>{{ clientInfo[key] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

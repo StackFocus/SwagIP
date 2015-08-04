@@ -1,4 +1,4 @@
-from swagip import app
+﻿from swagip import app
 
 
 class TestGetFunctions:

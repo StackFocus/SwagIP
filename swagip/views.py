@@ -36,6 +36,6 @@ def index():
         if "Wget" in userAgent or "fetch" in userAgent or "curl" in userAgent:
             return jsonify(clientInfo), 200
         else:
-            return render_template ('index.html', clientInfo=clientInfo)
+            return render_template ('index.html', title='SwagIP', clientInfo=clientInfo)
 
     return render_template ('index.html')

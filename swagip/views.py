@@ -6,8 +6,6 @@ Purpose: routes for the app
 
 from flask import render_template, request, jsonify
 from swagip import app
-import time
-import json
 
 
 @app.route('/', methods=['GET'])
@@ -21,7 +19,6 @@ def index():
     elif request.remote_addr:
         clientInfo['Source-IP'] = request.remote_addr
 
-
     if 'REMOTE_PORT' in request.environ:
         clientInfo['Source-Port'] = request.environ['REMOTE_PORT']
 
@@ -30,12 +27,12 @@ def index():
     sorted(clientInfo, key=clientInfo.get)
 
     if request.user_agent.string:
-        
+
         userAgent = request.user_agent.string
-        
+
         if "Wget" in userAgent or "fetch" in userAgent or "curl" in userAgent:
             return jsonify(clientInfo), 200
         else:
             return render_template ('index.html', title='SwagIP', clientInfo=clientInfo)
 
-    return render_template ('index.html')
+    return render_template('index.html')

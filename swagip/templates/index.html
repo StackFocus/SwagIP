@@ -9,24 +9,24 @@
 
         <div class="row">
             {% if clientInfo %}
-            <ul class="nav nav-tabs nav-justified">
+            <ul id="headerTableNav" class="nav nav-tabs nav-justified">
                 <li id="browser" role="presentation" class="active"><a href="#">Browser</a></li>
                 <li id="wget" role="presentation"><a href="#">Wget</a></li>
                 <li id="curl" role="presentation"><a href="#">Curl</a></li>
                 <li id="fetch" role="presentation"><a href="#">Fetch</a></li>
             </ul>
             <div class="table-responsive">
-                <table class="table table-bordered table-striped">
+                <table id="headerTable" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Item:</th>
+                            <th class="key">Item:</th>
                             <th>Result:</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for key in clientInfo %}
                         <tr>
-                            <td>{{ key }}</td>
+                            <td class="key">{{ key }}</td>
                             <td>{{ clientInfo[key] }}</td>
                         </tr>
                         {% endfor %}

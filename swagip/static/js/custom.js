@@ -1,10 +1,10 @@
 //Supply the command minus the url (i.e. 'wget -qO - ') and supply 'this'
 function setHeaderTable(command, element) {
-    //Make the clicked nav link active
-    $('#headerTableNav').find('li.active').removeClass('active');
-    $(element).addClass('active');
 
-    //Change the header
+    //Reset to defaults
+    resetHeaderTable(element);
+
+    //Change the table header
     $('#headerTable thead tr th.key').html('Command:');
 
     //Change the rows
@@ -12,99 +12,33 @@ function setHeaderTable(command, element) {
 
         var rowKey = $(this).html();
 
-        if (rowKey.match(/Content-Length/i)) {
-            $(this).html(command + ' ip.swagger.pro/content-length');
-        }
-        else if (rowKey.match(/Accept-Language/i)) {
-            $(this).html(command + ' ip.swagger.pro/accept-language');
-        }
-        else if (rowKey.match(/Accept-Encoding/i)) {
-            $(this).html(command + ' ip.swagger.pro/accept-encoding');
-        }
-        else if (rowKey.match(/Host/i)) {
-            $(this).html(command + ' ip.swagger.pro/host');
-        }
-        else if (rowKey.match(/Accept/i)) {
-            $(this).html(command + ' ip.swagger.pro/accept');
-        }
-        else if (rowKey.match(/Upgrade-Insecure-Requests/i)) {
-            $(this).html(command + ' ip.swagger.pro/upgrade-insecure-requests');
-        }
-        else if (rowKey.match(/Connection/i)) {
-            $(this).html(command + ' ip.swagger.pro/connection');
-        }
-        else if (rowKey.match(/Referer/i)) {
-            $(this).html(command + ' ip.swagger.pro/referer');
-        }
-        else if (rowKey.match(/Cache-Control/i)) {
-            $(this).html(command + ' ip.swagger.pro/cache-control');
-        }
-        else if (rowKey.match(/Source-Port/i)) {
-            $(this).html(command + ' ip.swagger.pro/source-port');
-        }
-        else if (rowKey.match(/User-Agent/i)) {
-            $(this).html(command + ' ip.swagger.pro/user-agent');
-        }
-        else if (rowKey.match(/Content-Type/i)) {
-            $(this).html(command + ' ip.swagger.pro/content-type');
+        if (rowKey.match(/Source-IP/i)) {
+            $(this).html(command + ' ip.swagger.pro/');
         }
         else {
-            $(this).html(command + ' ip.swagger.pro');
+            $(this).html(command + ' ip.swagger.pro/' + rowKey.toLowerCase());
         }
     });
 }
 
 // Supply 'this'
 function resetHeaderTable(element) {
+
     //Make the clicked nav link active
     $('#headerTableNav').find('li.active').removeClass('active');
     $(element).addClass('active');
-    //Change the header
+
+    //Change the table header
     $('#headerTable thead tr th.key').html('Item:');
 
-    //Change the rows
+    //Set the rows to default
     $('#headerTable > tbody > tr > td.key').each(function () {
 
-        var rowKey = $(this).html();
-
-        if (rowKey.match(/Content-Length/i)) {
-            $(this).html('Content-Length');
-        }
-        else if (rowKey.match(/Accept-Language/i)) {
-            $(this).html('Accept-Language');
-        }
-        else if (rowKey.match(/Accept-Encoding/i)) {
-            $(this).html('Accept-Encoding');
-        }
-        else if (rowKey.match(/Host/i)) {
-            $(this).html('Host');
-        }
-        else if (rowKey.match(/Accept/i)) {
-            $(this).html('Accept');
-        }
-        else if (rowKey.match(/Upgrade-Insecure-Requests/i)) {
-            $(this).html('Upgrade-Insecure-Requests');
-        }
-        else if (rowKey.match(/Connection/i)) {
-            $(this).html('Connection');
-        }
-        else if (rowKey.match(/Referer/i)) {
-            $(this).html('Referer');
-        }
-        else if (rowKey.match(/Cache-Control/i)) {
-            $(this).html('Cache-Control');
-        }
-        else if (rowKey.match(/Source-Port/i)) {
-            $(this).html('Source-Port');
-        }
-        else if (rowKey.match(/User-Agent/i)) {
-            $(this).html('User-Agent');
-        }
-        else if (rowKey.match(/Content-Type/i)) {
-            $(this).html('Content-Type');
+        if (($(this).html()).match(/(.*)[\/]$/i)) {
+            $(this).html('source-ip');
         }
         else {
-            $(this).html('Source-IP');
+            $(this).html(($(this).html()).replace(/(.*)[\/]/i, ''));
         }
     });
 }

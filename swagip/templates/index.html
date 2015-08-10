@@ -26,7 +26,7 @@
                     <tbody>
                         {% for key in clientInfo %}
                         <tr>
-                            <td class="key">{{ key }}</td>
+                            <td class="key">{{ key.lower() }}</td>
                             <td>{{ clientInfo[key] }}</td>
                         </tr>
                         {% endfor %}

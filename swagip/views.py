@@ -36,3 +36,103 @@ def index():
             return render_template ('index.html', title='SwagIP', clientInfo=clientInfo)
 
     return render_template('index.html')
+
+
+@app.route('/content-length', methods=['GET'])
+def contentLength():
+    """ Function to return content-length
+    """
+
+    if 'Client-Info' in request.headers:
+        return str(request.headers['Client-Info'])
+    
+    return ''
+
+
+@app.route('/accept-language', methods=['GET'])
+def acceptLanguage():
+    """ Function to return accept-language
+    """
+
+    if 'Accept-Language' in request.headers:
+        return str(request.headers['Accept-Language'])
+    
+    return ''
+
+
+@app.route('/accept-encoding', methods=['GET'])
+def acceptEncoding():
+    """ Function to return accept-encoding
+    """
+
+    if 'Accept-Encoding' in request.headers:
+        return str(request.headers['Accept-Encoding'])
+    
+    return ''
+
+
+@app.route('/host', methods=['GET'])
+def host():
+    """ Function to return host
+    """
+
+    if 'Host' in request.headers:
+        return str(request.headers['Host'])
+    
+    return ''
+
+
+@app.route('/upgrade-insecure-requests', methods=['GET'])
+def upgradeInsecureRequests():
+    """ Function to return upgrade-insecure-requests
+    """
+
+    if 'Upgrade-Insecure-Requests' in request.headers:
+        return str(request.headers['Upgrade-Insecure-Requests'])
+    
+    return ''
+
+
+@app.route('/accept', methods=['GET'])
+def accept():
+    """ Function to return accept
+    """
+
+    if 'Accept' in request.headers:
+        return str(request.headers['Accept'])
+    
+    return ''
+
+
+@app.route('/source-port', methods=['GET'])
+def sourcePort():
+    """ Function to return source-port
+    """
+    port = None
+
+    if 'REMOTE_PORT' in request.environ:
+        port = request.environ['REMOTE_PORT']
+
+    return str(port)
+
+
+@app.route('/user-agent', methods=['GET'])
+def userAgent():
+    """ Function to return user-agent
+    """
+
+    if 'User-Agent' in request.headers:
+        return str(request.headers['User-Agent'])
+    
+    return ''
+
+
+@app.route('/content-type', methods=['GET'])
+def contentType():
+    """ Function to return content-type
+    """
+
+    if 'Content-Type' in request.headers:
+        return str(request.headers['Content-Type'])
+    
+    return ''

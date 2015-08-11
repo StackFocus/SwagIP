@@ -12,8 +12,11 @@ function setHeaderTable(command, element) {
 
         var rowKey = $(this).html();
 
-        if (rowKey.match(/Source-IP/i)) {
+        if (rowKey.match(/json/i)) {
             $(this).html(command + ' ip.swagger.pro/');
+        }
+        else if (rowKey.match(/ip/i)) {
+            $(this).html(command + ' ip.swagger.pro/ip');
         }
         else {
             $(this).html(command + ' ip.swagger.pro/' + rowKey.toLowerCase());
@@ -35,6 +38,9 @@ function resetHeaderTable(element) {
     $('#headerTable > tbody > tr > td.key').each(function () {
 
         if (($(this).html()).match(/(.*)[\/]$/i)) {
+            $(this).html('json');
+        }
+        else if (($(this).html()).match(/(.*)[\/]ip$/i)) {
             $(this).html('source-ip');
         }
         else {

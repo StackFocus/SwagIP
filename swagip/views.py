@@ -38,6 +38,21 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/ip', methods=['GET'])
+def sourceIp():
+    """ Function to return source-ip
+    """
+
+    if request.access_route:
+        ip = request.access_route[0]
+    elif request.remote_addr:
+        ip = request.remote_addr
+    else:
+        ip = ''
+    
+    return ip
+
+
 @app.route('/content-length', methods=['GET'])
 def contentLength():
     """ Function to return content-length

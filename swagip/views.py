@@ -36,3 +36,22 @@ def index():
             return render_template ('index.html', title='SwagIP', clientInfo=clientInfo)
 
     return render_template('index.html')
+
+
+@app.route('/<header_name>')
+def show_post(header_name):
+    """ Function to return individual headers
+    """
+
+    if str(header_name).lower() == 'source-port':
+        if 'REMOTE_PORT' in request.environ:
+            return str(request.environ['REMOTE_PORT'])
+    elif str(header_name).lower() == 'ip':
+        if request.access_route:
+            return request.access_route[0]
+        elif request.remote_addr:
+            return request.remote_addr
+    elif header_name in request.headers:
+        return str(request.headers[header_name])
+    
+    return ''

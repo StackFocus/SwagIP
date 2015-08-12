@@ -30,6 +30,10 @@
                             <td>{{ clientInfo[key] }}</td>
                         </tr>
                         {% endfor %}
+                        <tr>
+                            <td class="key">JSON</td>
+                            <td>{{ clientInfo | tojson | safe }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

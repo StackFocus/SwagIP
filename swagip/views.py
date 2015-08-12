@@ -51,6 +51,8 @@ def show_post(header_name):
             return request.access_route[0]
         elif request.remote_addr:
             return request.remote_addr
+    elif str(header_name).lower() == 'all':
+            return jsonify(dict(request.headers.to_list()))
     elif header_name in request.headers:
         return str(request.headers[header_name])
 

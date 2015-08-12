@@ -33,7 +33,7 @@ def index():
         if "Wget" in userAgent or "fetch" in userAgent or "curl" in userAgent:
             return jsonify(clientInfo), 200
         else:
-            return render_template ('index.html', title='SwagIP', clientInfo=clientInfo)
+            return render_template('index.html', title='SwagIP', clientInfo=clientInfo)
 
     return render_template('index.html')
 
@@ -53,5 +53,5 @@ def show_post(header_name):
             return request.remote_addr
     elif header_name in request.headers:
         return str(request.headers[header_name])
-    
+
     return ''

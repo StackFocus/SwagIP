@@ -8,6 +8,10 @@
         font-size:0.8em;
 }
 
+#headerTable {
+    margin-bottom: 3em;
+}
+
 @media (min-width: 1200px) {
     .container-fluid {
         width:85%;

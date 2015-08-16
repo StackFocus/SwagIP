@@ -6,8 +6,10 @@ Purpose: General helper utils
 
 from collections import OrderedDict
 
+
 def getClientInfo(request):
-    
+    """ Function to get client information
+    """
     clientInfo = {}
     if request:
         if request.access_route:

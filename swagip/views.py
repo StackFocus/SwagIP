@@ -6,7 +6,7 @@ Purpose: routes for the app
 
 from flask import render_template, request, jsonify
 from swagip import app
-from utils import getClientInfo
+from swagip.utils import getClientInfo
 
 
 @app.route('/', methods=['GET'])
@@ -39,7 +39,7 @@ def show_post(header_name):
         if 'Source-Port' in clientInfo:
             return str(clientInfo['Source-Port'])
     elif str(header_name).lower() == 'all':
-            return jsonify(clientInfo)
+        return jsonify(clientInfo)
     elif header_name in clientInfo:
         return str(clientInfo[header_name])
 

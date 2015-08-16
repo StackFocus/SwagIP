@@ -40,7 +40,7 @@ def show_post(header_name):
             return str(clientInfo['Source-Port'])
     elif str(header_name).lower() == 'all':
         return jsonify(clientInfo)
-    elif header_name in clientInfo:
-        return str(clientInfo[header_name])
+    elif str(header_name).title() in clientInfo:
+        return str(clientInfo[(header_name.title())])
 
     return ''

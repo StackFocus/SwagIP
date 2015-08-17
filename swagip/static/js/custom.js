@@ -13,13 +13,13 @@ function setHeaderTable(command, element) {
         var rowKey = $(this).html();
 
         if (rowKey.match(/json/i)) {
-            $(this).html(command + ' ip.swagger.pro/all');
+            $(this).html(command + 'ip.swagger.pro/all');
         }
         else if (rowKey.match(/source-ip/i)) {
-            $(this).html(command + ' ip.swagger.pro/');
+            $(this).html(command + 'ip.swagger.pro/');
         }
         else {
-            $(this).html(command + ' ip.swagger.pro/' + rowKey.toLowerCase());
+            $(this).html(command + 'ip.swagger.pro/' + rowKey.toLowerCase());
         }
     });
 }
@@ -57,17 +57,17 @@ $(document).ready(function () {
     });
 
     $('#wget').on('click', function (e) {
-        setHeaderTable('wget -qO -', this);
+        setHeaderTable('wget -qO - ', this);
         return false;
     });
 
     $('#curl').on('click', function (e) {
-        setHeaderTable('curl', this);
+        setHeaderTable('curl ', this);
         return false;
     });
 
     $('#fetch').on('click', function (e) {
-        setHeaderTable('fetch -qo -', this);
+        setHeaderTable('fetch -qo - ', this);
         return false;
     });
 

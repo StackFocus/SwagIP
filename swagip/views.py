@@ -14,7 +14,6 @@ def index():
     """ Function to return index page
     """
     clientInfo = getClientInfo(request)
-
     if 'User-Agent' in clientInfo:
 
         userAgent = clientInfo['User-Agent']
@@ -25,7 +24,7 @@ def index():
             else:
                 return ''
 
-    return render_template('index.html', title='SwagIP', clientInfo=clientInfo)
+    return render_template('index.html', title='SwagIP', hostname=app.config['HOST_NAME'], clientInfo=clientInfo)
 
 
 @app.route('/<header_name>')

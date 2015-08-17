@@ -10,7 +10,7 @@ curl ip.swagger.pro
 fetch -qo - ip.swagger.pro
 
 
-#####Example of retrieving your public IP address from PowerShell:
+#####Example of retrieving your public IP address from PowerShell 3+:
 Invoke-RestMethod -URI http://ip.swagger.pro
 
 ### Installing

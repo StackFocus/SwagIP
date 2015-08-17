@@ -6,36 +6,26 @@ Purpose: routes for the app
 
 from flask import render_template, request, jsonify
 from swagip import app
+from swagip.utils import getClientInfo
 
 
 @app.route('/', methods=['GET'])
 def index():
     """ Function to return index page
     """
-    clientInfo = {}
+    clientInfo = getClientInfo(request)
 
-    if request.access_route:
-        clientInfo['Source-IP'] = request.access_route[0]
-    elif request.remote_addr:
-        clientInfo['Source-IP'] = request.remote_addr
+    if 'User-Agent' in clientInfo:
 
-    if 'REMOTE_PORT' in request.environ:
-        clientInfo['Source-Port'] = request.environ['REMOTE_PORT']
+        userAgent = clientInfo['User-Agent']
 
-    clientInfo.update(dict(request.headers.to_list()))
+        if "Wget" in userAgent or "fetch" in userAgent or "curl" in userAgent or "WindowsPowerShell" in userAgent:
+            if 'Source-IP' in clientInfo:
+                return clientInfo['Source-IP']
+            else:
+                return ''
 
-    sorted(clientInfo, key=clientInfo.get)
-
-    if request.user_agent.string:
-
-        userAgent = request.user_agent.string
-
-        if "Wget" in userAgent or "fetch" in userAgent or "curl" in userAgent:
-            return jsonify(clientInfo), 200
-        else:
-            return render_template('index.html', title='SwagIP', clientInfo=clientInfo)
-
-    return render_template('index.html')
+    return render_template('index.html', title='SwagIP', clientInfo=clientInfo)
 
 
 @app.route('/<header_name>')
@@ -43,17 +33,14 @@ def show_post(header_name):
     """ Function to return individual headers
     """
 
+    clientInfo = getClientInfo(request)
+
     if str(header_name).lower() == 'source-port':
-        if 'REMOTE_PORT' in request.environ:
-            return str(request.environ['REMOTE_PORT'])
-    elif str(header_name).lower() == 'ip':
-        if request.access_route:
-            return request.access_route[0]
-        elif request.remote_addr:
-            return request.remote_addr
+        if 'Source-Port' in clientInfo:
+            return str(clientInfo['Source-Port'])
     elif str(header_name).lower() == 'all':
-            return jsonify(dict(request.headers.to_list()))
-    elif header_name in request.headers:
-        return str(request.headers[header_name])
+        return jsonify(clientInfo)
+    elif str(header_name).title() in clientInfo:
+        return str(clientInfo[(header_name.title())])
 
     return ''

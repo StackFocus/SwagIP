@@ -5,7 +5,7 @@ Purpose: routes for the app
 """
 
 from flask import render_template, request, jsonify
-from swagip import app
+from swagip import app, HOSTNAME
 from swagip.utils import getClientInfo
 
 
@@ -24,7 +24,7 @@ def index():
             else:
                 return ''
 
-    return render_template('index.html', title='SwagIP', hostname=app.config['HOST_NAME'], clientInfo=clientInfo)
+    return render_template('index.html', title='SwagIP', hostname=HOSTNAME, clientInfo=clientInfo)
 
 
 @app.route('/<header_name>')

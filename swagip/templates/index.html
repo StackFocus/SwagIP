@@ -14,6 +14,7 @@
                 <li id="wget" role="presentation"><a href="#">Wget</a></li>
                 <li id="curl" role="presentation"><a href="#">Curl</a></li>
                 <li id="fetch" role="presentation"><a href="#">Fetch</a></li>
+                <li id="powershell" role="presentation"><a href="#">PowerShell 3+</a></li>
             </ul>
             <div class="table-responsive">
                 <table id="headerTable" class="table table-bordered table-striped">
@@ -31,7 +32,7 @@
                         </tr>
                         {% endfor %}
                         <tr>
-                            <td class="key">json</td>
+                            <td class="key">JSON</td>
                             <td id="jsonTd" style="width:200px;">{{ clientInfo | tojson(indent=4) | safe }}</td>
                         </tr>
                     </tbody>

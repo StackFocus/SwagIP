@@ -19,7 +19,7 @@ def index():
 
         userAgent = clientInfo['User-Agent']
 
-        if "Wget" in userAgent or "fetch" in userAgent or "curl" in userAgent:
+        if "Wget" in userAgent or "fetch" in userAgent or "curl" in userAgent or "WindowsPowerShell" in userAgent:
             if 'Source-IP' in clientInfo:
                 return clientInfo['Source-IP']
             else:

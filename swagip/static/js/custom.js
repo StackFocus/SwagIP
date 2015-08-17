@@ -41,7 +41,7 @@ function resetHeaderTable(element) {
             $(this).html('source-ip');
         }
         else if (($(this).html()).match(/(.*)[\/]all$/i)) {
-            $(this).html('json');
+            $(this).html('JSON');
         }
         else {
             $(this).html(($(this).html()).replace(/(.*)[\/]/i, ''));
@@ -68,6 +68,11 @@ $(document).ready(function () {
 
     $('#fetch').on('click', function (e) {
         setHeaderTable('fetch -qo -', this);
+        return false;
+    });
+
+    $('#powershell').on('click', function (e) {
+        setHeaderTable('Invoke-RestMethod -URI http://', this);
         return false;
     });
 });

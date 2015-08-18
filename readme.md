@@ -3,15 +3,16 @@
 A simple way to get your public IP address and other connection related information  
 
 #####Examples of retrieving your public IP address from Linux/Unix CLI:
+```
 wget -qO - ip.swagger.pro
-
 curl ip.swagger.pro
-
 fetch -qo - ip.swagger.pro
-
+```
 
 #####Example of retrieving your public IP address from PowerShell 3+:
+```
 Invoke-RestMethod -URI http://ip.swagger.pro
+```
 
 ### Installing
 ```

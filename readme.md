@@ -31,16 +31,16 @@ $ docker build .
 
 ### Screenshots
 #####Browser Information:
-<img src='screenshots/1-browser.png' alt='Browser Information' />
+![Browser Information](screenshots/1-browser.png?raw=true)
 
 #####Wget Commands:
-<img src='screenshots/2-wget.png' alt='Wget Commands' />
+![Wget Commands](screenshots/2-wget.png.png?raw=true)
 
 #####Curl Commands:
-<img src='screenshots/3-curl.png' alt='Curl Commands' />
+![Curl Commands](screenshots/3-curl.png.png?raw=true)
 
 #####Fetch Commands:
-<img src='screenshots/4-fetch.png' alt='Fetch Commands' />
+![Fetch Commands](screenshots/4-fetch.png.png?raw=true)
 
 #####PowerShell Commands:
-<img src='screenshots/5-powershell.png' alt='PowerShell Commands' />
+![PowerShell Commands](screenshots/5-powershell.png.png?raw=true)

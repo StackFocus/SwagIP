@@ -1,0 +1,24 @@
+#headerTable td.key, 
+#headerTable th.key {
+    width: 30%;
+}
+
+#jsonTd {
+        white-space: pre;
+        font-size:0.8em;
+}
+
+#headerTable {
+    margin-bottom: 3em;
+}
+
+@media (min-width: 1200px) {
+    .container-fluid {
+        width:85%;
+    }
+
+    #jsonTd {
+        font-size:0.9em !important;
+        white-space: pre;
+    }
+}

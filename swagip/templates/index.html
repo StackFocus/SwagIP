@@ -1,1 +1,43 @@
-<title>SwagIP</title>
+{% extends "base.html" %}
+    {% block content %}
+        <div class="row">
+            <h2 class="text-center" style="margin-top:1em">SwagIP</h2>
+        </div>
+        <div class="row">
+            <h3 class="text-center" style="margin-bottom:1.75em">Your Public IP is {% if 'Source-IP' in clientInfo %} {{ clientInfo['Source-IP'] }} {% endif %}</h3>
+        </div>
+
+        <div class="row">
+            {% if clientInfo %}
+            <ul id="headerTableNav" class="nav nav-tabs nav-justified">
+                <li id="browser" role="presentation" class="active"><a href="#">Browser</a></li>
+                <li id="wget" role="presentation"><a href="#">Wget</a></li>
+                <li id="curl" role="presentation"><a href="#">Curl</a></li>
+                <li id="fetch" role="presentation"><a href="#">Fetch</a></li>
+                <li id="powershell" role="presentation"><a href="#">PowerShell 3+</a></li>
+            </ul>
+            <div class="table-responsive">
+                <table id="headerTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="key">Item:</th>
+                            <th>Result:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key in clientInfo %}
+                        <tr>
+                            <td class="key">{{ key.lower() }}</td>
+                            <td>{{ clientInfo[key] }}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td class="key">JSON</td>
+                            <td id="jsonTd" style="width:200px;">{{ clientInfo | tojson(indent=4) | safe }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    {% endblock %}

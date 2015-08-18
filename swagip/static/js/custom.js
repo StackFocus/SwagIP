@@ -13,13 +13,13 @@ function setHeaderTable(command, element) {
         var rowKey = $(this).html();
 
         if (rowKey.match(/json/i)) {
-            $(this).html(command + 'ip.swagger.pro/all');
+            $(this).html(command + HOSTNAME + '/all');
         }
         else if (rowKey.match(/source-ip/i)) {
-            $(this).html(command + 'ip.swagger.pro/');
+            $(this).html(command + HOSTNAME + '/');
         }
         else {
-            $(this).html(command + 'ip.swagger.pro/' + rowKey.toLowerCase());
+            $(this).html(command + HOSTNAME + '/' + rowKey.toLowerCase());
         }
     });
 }

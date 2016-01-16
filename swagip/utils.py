@@ -13,7 +13,7 @@ def getClientInfo(request):
     clientInfo = {}
     if request:
         if request.access_route:
-            clientInfo['Source-IP'] = request.access_route[0]
+            clientInfo['Source-IP'] = request.access_route[0].split(':')[0]
         elif request.remote_addr:
             clientInfo['Source-IP'] = request.remote_addr
 

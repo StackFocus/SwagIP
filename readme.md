@@ -16,6 +16,10 @@ fetch -qo - ip.swagger.pro
 Invoke-RestMethod -URI http://ip.swagger.pro
 ```
 
+### Authors
+- Kevin (<kevin@stealsyour.pw>)
+- Matt Prahl (<matt@mprahl.com>)
+
 ### Installing
 ```
 $ pip install -r requirements.txt

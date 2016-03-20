@@ -1,5 +1,5 @@
-## SwagIP 
-[![Build Status](https://travis-ci.org/thatarchguy/SwagIP.svg)](https://travis-ci.org/thatarchguy/SwagIP)![Python](https://img.shields.io/badge/python-2.7-blue.svg)![Flask](http://flask.pocoo.org/static/badges/made-with-flask-s.png)
+## SwagIP [![Build Status](https://travis-ci.org/thatarchguy/SwagIP.svg)](https://travis-ci.org/thatarchguy/SwagIP) ![Python](https://img.shields.io/badge/python-2.7-blue.svg) ![Flask](http://flask.pocoo.org/static/badges/made-with-flask-s.png)
+
 
 
 A simple way to get your public IP address and other connection related information  
@@ -13,12 +13,12 @@ fetch -qo - ip.swagger.pro
 
 #####Example of retrieving your public IP address from PowerShell 3+:
 ```
-Invoke-RestMethod -URI http://ip.swagger.pro
+Invoke-RestMethod http://ip.swagger.pro
 ```
 
 ### Authors
-- Kevin (<kevin@stealsyour.pw>)
-- Matt Prahl (<matt@mprahl.com>)
+- [Kevin Law](https://github.com/thatarchguy)
+- [Matt Prahl](https://github.com/PrahlM93)
 
 ### Installing
 ```

@@ -20,21 +20,21 @@ Invoke-RestMethod http://ip.swagger.pro
 - [Kevin Law](https://github.com/thatarchguy)
 - [Matt Prahl](https://github.com/PrahlM93)
 
-### Installing
+### Installation
 ```
 $ pip install -r requirements.txt
 $ python app.py
 ```
-### Tests
+### Testing
 ```
 $ py.test tests/
 ```
 
-### Docker!
-We use docker to scale this application.
+### Docker
+Docker is used to scale the application
 ```
-$ docker build .
-$ docker run -p 0.0.0.0:80:8080 [image id]
+$ docker build -t swagip .
+$ docker run -p 0.0.0.0:80:8080 swagip
 ```
 
 ### Screenshots

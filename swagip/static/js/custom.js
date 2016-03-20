@@ -72,7 +72,7 @@ $(document).ready(function () {
     });
 
     $('#powershell').on('click', function (e) {
-        setHeaderTable('Invoke-RestMethod -URI http://', this);
+        setHeaderTable('Invoke-RestMethod http://', this);
         return false;
     });
 });

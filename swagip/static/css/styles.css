@@ -15,10 +15,10 @@
 @media (min-width: 1200px) {
     .container-fluid {
         width:85%;
+        max-width: 1400px;
     }
 
     #jsonTd {
         font-size:0.9em !important;
-        white-space: pre;
     }
 }

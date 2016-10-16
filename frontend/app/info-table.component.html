@@ -1,0 +1,22 @@
+<div class="table-responsive">
+    <table *ngIf="clientInfo" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td *ngIf="selectedTool == 'browser'">Item:</td>
+                <td *ngIf="selectedTool != 'browser'">Command:</td>
+                <td>Result:</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let key of clientInfoKeys()">
+                <td *ngIf="selectedTool == 'browser'">{{ key }}</td>
+                <td *ngIf="selectedTool != 'browser'">{{ getCommand(key) }}</td>
+                <td>{{ clientInfo[key] }}</td>
+            </tr>
+            <tr>
+                <td>JSON</td>
+                <td id="jsonTd">{{ clientInfoJson() }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

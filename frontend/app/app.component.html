@@ -1,0 +1,10 @@
+<h2>SwagIP</h2>
+<h3>Your Public IP is {{ ipAddress }} {{ tool }}</h3>
+<div class="container-fluid">
+    <ul class="nav nav-tabs nav-justified">
+        <li *ngFor="let tab of tabs" role="presentation" routerLinkActive="active">
+            <a routerLink="{{ tab.name }}">{{ tab.displayName }}</a>
+        </li>
+    </ul>
+    <router-outlet></router-outlet>
+</div>

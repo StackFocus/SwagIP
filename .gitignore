@@ -62,3 +62,11 @@ target/
 env/
 .idea
 .vagrant
+
+# Angular 2
+frontend/typings
+frontend/system-config.js*
+frontend/app/**/*.js
+frontend/app/**/*.map
+frontend/node_modules
+frontend/npm-debug.log

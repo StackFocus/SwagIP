@@ -4,42 +4,51 @@ File: views.py
 Purpose: routes for the app
 """
 
-from flask import render_template, request, jsonify
-from swagip import app, HOSTNAME
+from flask import request, jsonify, send_from_directory
+import os
+from swagip import app
 from swagip.utils import get_client_info
 
-
-@app.route('/', methods=['GET'])
-def index():
-    """ Function to return index page
-    """
-    clientInfo = getClientInfo(request)
-    if 'User-Agent' in clientInfo:
-
-        userAgent = clientInfo['User-Agent']
-
-        if "Wget" in userAgent or "fetch" in userAgent or "curl" in userAgent or "WindowsPowerShell" in userAgent:
-            if 'Source-IP' in clientInfo:
-                return clientInfo['Source-IP']
-            else:
-                return ''
-
-    return render_template('index.html', title='SwagIP', hostname=HOSTNAME, clientInfo=clientInfo)
+BASE_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+FRONTEND_FOLDER = os.path.join(BASE_PATH, 'frontend')
 
 
-@app.route('/<header_name>')
-def show_post(header_name):
+@app.route('/api/<header_name>')
+def get_headers(header_name):
     """ Function to return individual headers
     """
 
-    clientInfo = getClientInfo(request)
+    client_info = get_client_info(request)
 
-    if str(header_name).lower() == 'source-port':
-        if 'Source-Port' in clientInfo:
-            return str(clientInfo['Source-Port'])
-    elif str(header_name).lower() == 'all':
-        return jsonify(clientInfo)
-    elif str(header_name).title() in clientInfo:
-        return str(clientInfo[(header_name.title())])
+    if str(header_name).lower() == 'all':
+        return jsonify(client_info)
+
+    if str(header_name).lower() in client_info:
+        return str(client_info[(header_name.lower())])
 
     return ''
+
+
+@app.route('/')
+def frontend_index():
+    client_info = get_client_info(request)
+
+    for browser in ['Wget', 'fetch', 'curl', 'WindowsPowerShell']:
+        if browser in client_info.get('user-agent'):
+            return client_info.get('source-ip')
+
+    return send_from_directory(FRONTEND_FOLDER, 'index.html')
+
+
+@app.route('/browser')
+@app.route('/curl')
+@app.route('/wget')
+@app.route('/fetch')
+@app.route('/powershell')
+def frontend_routes():
+    return send_from_directory(FRONTEND_FOLDER, 'index.html')
+
+
+@app.route('/<path:filename>')
+def frontend_static_files(filename):
+    return send_from_directory(FRONTEND_FOLDER, filename)

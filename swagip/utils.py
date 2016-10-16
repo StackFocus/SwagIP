@@ -7,20 +7,20 @@ Purpose: General helper utils
 from collections import OrderedDict
 
 
-def getClientInfo(request):
+def get_client_info(request):
     """ Function to get client information
     """
-    clientInfo = {}
-    if request:
-        if request.access_route:
-            clientInfo['Source-IP'] = request.access_route[0].split(':')[0]
-        elif request.remote_addr:
-            clientInfo['Source-IP'] = request.remote_addr
+    client_info = {}
+    if request.access_route:
+        client_info['source-ip'] = request.access_route[0].split(':')[0]
+    elif request.remote_addr:
+        client_info['source-ip'] = request.remote_addr
 
-        if 'REMOTE_PORT' in request.environ:
-            clientInfo['Source-Port'] = request.environ['REMOTE_PORT']
+    if 'REMOTE_PORT' in request.environ:
+        client_info['source-port'] = request.environ['REMOTE_PORT']
 
-        clientInfo.update(dict(request.headers.to_list()))
-        clientInfo = OrderedDict(sorted(clientInfo.items()))
+    client_info.update(dict(request.headers.to_list()))
+    client_info = dict((key.lower(), client_info.get(key)) for key in client_info.keys())
+    client_info = OrderedDict(sorted(client_info.items()))
 
-    return clientInfo
+    return client_info

@@ -6,7 +6,7 @@ Purpose: routes for the app
 
 from flask import render_template, request, jsonify
 from swagip import app, HOSTNAME
-from swagip.utils import getClientInfo
+from swagip.utils import get_client_info
 
 
 @app.route('/', methods=['GET'])
